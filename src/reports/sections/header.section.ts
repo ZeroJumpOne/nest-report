@@ -17,19 +17,29 @@ interface HeaderOptions {
 
 }
 
-export const headerSection = (options: HeaderOptions): Content => { 
+export const headerSection = (options: HeaderOptions): Content => {
 
    const { title, subtitle, showLogo = true, showDate = true } = options;
 
+   const headerLogo: Content = showLogo ? logo : null;
+   const headerDate: Content = showDate
+      ? {
+         text: DateFormatter.getDDMMMMYYYY(new Date()),
+         alignment: 'right',
+         margin: [0, 20, 10, 20],
+      }
+      : null;
+
+   const headerTitle: Content = title
+      ? {
+         text: title,
+         style: {
+            bold: true,
+         },
+      }
+      : null;
+
    return {
-      columns: [
-         showLogo 
-         logo,
-         {
-            text: DateFormatter.getDDMMMMYYYY(new Date()),
-            alignment: 'right',
-            margin: [0, 20, 10, 20],
-         }
-      ],
+      columns: [headerLogo, headerTitle,  headerDate],
    }
 }

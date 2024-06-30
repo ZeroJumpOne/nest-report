@@ -39,7 +39,8 @@ export const getEmploymentLetterReport = (): TDocumentDefinitions => {
         styles: styles,
         pageMargins: [40, 60, 40, 60],
         header: headerSection({
-            showLogo: false,
+            showLogo: true,
+            showDate: true,            
         }),
         content: [
             {
