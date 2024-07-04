@@ -3,8 +3,8 @@ import { DateFormatter } from "src/helpers";
 
 const logo: Content = {
    image: 'src/assets/control.jpg',
-   width: 160,
-   height: 120,
+   width: 140,
+   height: 100,
    // alignment: 'center',
    // margin: [0,0,0,20]
 }
@@ -21,25 +21,46 @@ export const headerSection = (options: HeaderOptions): Content => {
 
    const { title, subtitle, showLogo = true, showDate = true } = options;
 
-   const headerLogo: Content = showLogo ? logo : null;
-   const headerDate: Content = showDate
-      ? {
-         text: DateFormatter.getDDMMMMYYYY(new Date()),
-         alignment: 'right',
-         margin: [0, 20, 10, 20],
-      }
-      : null;
+   const currentDate: Content = {
+      text: DateFormatter.getDDMMMMYYYY(new Date()),
+      alignment: 'right',
+      margin: [20, 30],
+      width: 150,
+   }
 
-   const headerTitle: Content = title
-      ? {
-         text: title,
-         style: {
-            bold: true,
+   const headerLogo: Content = showLogo ? logo : null;
+   const headerDate: Content = showDate ? currentDate : null;
+
+   const headerSubTitle: Content = subtitle ? {
+      stack: [
+         {
+            text: subtitle,
+            alignment: "center",
+            margin: [0, 2, 0, 0],
+            style: {
+               bold: true,
+               fontSize: 15,
+            },
          },
-      }
-      : null;
+      ],
+   } : null;
+
+   const headerTitle: Content = title ? {
+      stack: [
+         {
+            text: title,
+            alignment: "center",
+            margin: [0, 20, 0, 0],
+            style: {
+               bold: true,
+               fontSize: 22,
+            },
+         },
+         headerSubTitle,
+      ],
+   } : null;
 
    return {
-      columns: [headerLogo, headerTitle,  headerDate],
+      columns: [headerLogo, headerTitle, headerDate],
    }
 }
