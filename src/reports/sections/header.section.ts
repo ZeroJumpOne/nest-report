@@ -17,15 +17,15 @@ interface HeaderOptions {
 
 }
 
-export const headerSection = (options: HeaderOptions): Content => {
+export const headerSection = (headerOptions: HeaderOptions): Content => {
 
-   const { title, subtitle, showLogo = true, showDate = true } = options;
+   const { title, subtitle, showLogo = true, showDate = true } = headerOptions;
 
    const currentDate: Content = {
       text: DateFormatter.getDDMMMMYYYY(new Date()),
       alignment: 'right',
       margin: [20, 30],
-      width: 150,
+      width: 140,
    }
 
    const headerLogo: Content = showLogo ? logo : null;
@@ -38,7 +38,7 @@ export const headerSection = (options: HeaderOptions): Content => {
             alignment: "center",
             margin: [0, 2, 0, 0],
             style: {
-               bold: true,
+               // bold: true,
                fontSize: 15,
             },
          },

@@ -20,4 +20,26 @@ export class StoreReportsController {
       pdfDoc.end();
    }
 
+   @Get('svgs-charts')
+   public async getSvgChart(@Res() response: Response) {
+
+      const pdfDoc = await this.storeReportsService.getSvgChart();
+
+      response.setHeader('Content-Type', 'application/pdf');
+      pdfDoc.info.Title = 'svg-chart-report.pdf';
+      pdfDoc.pipe(response);
+      pdfDoc.end();
+   }
+
+   @Get('statistics')
+   public async getStatistics(@Res() response: Response) {
+
+      const pdfDoc = await this.storeReportsService.getStatistics();
+
+      response.setHeader('Content-Type', 'application/pdf');
+      pdfDoc.info.Title = 'statistics-report.pdf';
+      pdfDoc.pipe(response);
+      pdfDoc.end();
+   }
+
 }
